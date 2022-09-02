@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="icon/favicon.ico">
+    <title>To-Do List</title>
+</head>
+<body>
+    <nav id="topnavbar">
+        <h1>To-Do List</h1>
+    </nav>
+
+    <div id="inpContainer">
+        <input type="text" id="inpTask" placeholder="Enter your task here...">
+        <button id="addbtn" onclick="addtask()">Add Task</button>
+    </div>
+
+    <div id="taskContainer">
+        <div id="empty">
+            <i class="fa-solid fa-square-check"></i>
+            <span>Your To-Do List is empty</span><br>
+        </div><br>
+    </div>
+    
+    <script src="app.js"></script>
+    <script src="https://kit.fontawesome.com/dd13ebace7.js" crossorigin="anonymous"></script>
+</body>
+</html>

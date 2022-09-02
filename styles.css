@@ -1,0 +1,76 @@
+*{
+    margin: 0;
+}
+
+body{
+    background-color: #222831;
+}
+
+#topnavbar{
+    text-align: center;
+    background-color: #00ADB5;
+    padding: 20px;
+    font-size: 30px;
+    color: #EEEEEE;
+}
+
+#inpContainer{
+    padding: 30px;
+    text-align: center;
+}
+
+#inpTask{
+    background-color: #EEEEEE;
+    padding: 5px;
+    border: 0;
+    border-radius: 3px;
+    width: 600px;
+    height: 25px;
+}
+
+#addbtn{
+    height: 35px;
+    cursor: pointer;
+}
+
+#taskContainer{
+    margin-left: 310px;
+    width: 661px;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+}
+
+#empty{
+    padding: 15px;
+    background-color: green;
+}
+
+.checkbtn{
+    width: 15px;
+    height: 15px;
+    opacity: 50%;
+}
+
+.task{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: left;
+    background-color: #393E46;
+    padding: 10px;
+    border: 1px solid black;
+    margin: 1px 0 0 0;
+}
+
+.task>div{
+    width: 85%;
+    font-size: 18px;
+}
+
+.task>i{
+    opacity: 50%;
+    font-size: 15px;
+    cursor: pointer;
+}
+
