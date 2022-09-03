@@ -34,14 +34,24 @@ body{
 }
 
 #taskContainer{
-    margin-left: 310px;
+    margin: auto;
+    margin-bottom: 20px;
     width: 661px;
     font-size: 20px;
     color: white;
     text-align: center;
 }
 
+#emp{
+    display: flex;
+    justify-content: center;
+}
+
 #empty{
+    width: 625px;
+    font-size: 20px;
+    color: white;
+    text-align: center;
     padding: 15px;
     background-color: green;
 }
@@ -72,5 +82,19 @@ body{
     opacity: 50%;
     font-size: 15px;
     cursor: pointer;
+}
+
+#msg{
+    position: fixed;
+    right: 30px;
+    bottom: 50px;
+    width: 160px;
+    padding: 30px;
+    text-align: center;
+    font-size: 18px;
+    background-color: #00ADB5;
+    color: #EEEEEE;
+    font-weight: bold;
+    opacity: 0;
 }
 
