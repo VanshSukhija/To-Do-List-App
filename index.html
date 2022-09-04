@@ -14,8 +14,10 @@
     </nav>
 
     <div id="inpContainer">
-        <input type="text" id="inpTask" placeholder="Enter your task here...">
+        <input type="text" id="inpTask" placeholder="Enter your task here..."><br><br>
+        <button id="updatebtn" onclick="update()">Update Task</button>
         <button id="addbtn" onclick="addtask()">Add Task</button>
+        <button id="clrbtn" onclick="cleartask()">Clear All Tasks</button>
     </div>
 
     <div id="emp">
@@ -24,8 +26,7 @@
             <span>You have done all your tasks</span><br>
         </div>
     </div>
-    <div id="taskContainer">
-    </div>
+    <div id="taskContainer"></div>
 
     <div id="msg">Task Added</div>
     
