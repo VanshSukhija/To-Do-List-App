@@ -8,11 +8,13 @@ let inpTask = document.getElementById("inpTask");
 let empty = document.getElementById("empty");
 let msg = document.getElementById("msg");
 let todos = [];
+let checked = [];
 
 if(JSON.parse(localStorage.getItem("todos")).length){
     empty.style.display = "none";
     for(let i=0; i<JSON.parse(localStorage.getItem("todos")).length; i++){
         todos.push(JSON.parse(localStorage.getItem("todos"))[i]);
+        checked.push(JSON.parse(localStorage.getItem("checked"))[i]);
     }
     todos.forEach(element => {
         taskContainer.innerHTML += `<div class="task" onmouseenter="showicons(this)" onmouseleave="hideicons(this)">
@@ -22,6 +24,12 @@ if(JSON.parse(localStorage.getItem("todos")).length){
         <i class="fa-regular fa-trash-can" onclick="deltask(this)"></i>
         </div>`;
     });
+    for(let i=0; i<checked.length; i++){
+        if(checked[i]=='1'){
+            checkbtn[i].checked = true;
+            check(checkbtn[i]);
+        }
+    }
 }
 
 function showicons(index){
@@ -39,7 +47,6 @@ function hideicons(index){
 function addtask(){
     if(inpTask.value){
         clrbtn.disable = false;
-        // clrbtn.style.backgroundColor = "white";
         empty.style.display = "none";
         taskContainer.innerHTML += `<div class="task" onmouseenter="showicons(this)" onmouseleave="hideicons(this)">
         <input type="checkbox" class="checkbtn" onclick="check(this)">
@@ -48,8 +55,11 @@ function addtask(){
         <i class="fa-regular fa-trash-can" onclick="deltask(this)"></i>
         </div>`;
         todos.push(inpTask.value);
+        checked.push(0);
         localStorage.removeItem("todos");
+        localStorage.removeItem("checked");
         localStorage.setItem("todos", JSON.stringify(todos));
+        localStorage.setItem("checked", JSON.stringify(checked));
         inpTask.value = "";
         msganimate("Task Added");
     }
@@ -59,24 +69,31 @@ function addtask(){
 
 function cleartask(){
     clrbtn.disable = true;
-    // clrbtn.style.backgroundColor = "grey";
     if(todos.length==0)
         msganimate("There is no task to be cleared");
         else
         msganimate("Cleared all tasks");
     localStorage.clear();
     todos = [];
+    checked = [];
     empty.style.display = "block";
     taskContainer.innerHTML = '';
 }
 
 function check(element){
+    // console.log(element);
+    let index = todos.indexOf(element.parentNode.childNodes[3].innerHTML);
+    console.log(element.checked);
     if(element.checked){
+        checked[index] = 1;
         element.parentNode.childNodes[3].style.textDecoration = "line-through #00ADB5 3px";
     }
     else{
+        checked[index] = 0;
         element.parentNode.childNodes[3].style.textDecoration = "none";
     }
+    localStorage.removeItem("checked");
+    localStorage.setItem("checked", JSON.stringify(checked));
 }
 
 function deltask(element){
