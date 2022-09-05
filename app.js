@@ -1,16 +1,3 @@
-// console.log("Hello World");
-// function getData(){
-//     url = 'https://api.unsplash.com/photos/random?page=1&query=nature&orientation=landscape&client_id=AM7OQGSHBU6vRpq32_eZve8Z62b767qv3Rrczf8ppZw'
-//     fetch(url).then((response)=>{
-//         // console.log(response);
-//         return response.json();
-//     }).then((data)=>{
-//         console.log(JSON.stringify(data['urls']['raw']));
-//         return JSON.stringify(data['urls']['raw']);
-//     })
-// }
-// document.querySelector('body').style.backgroundImage = `url('${getData()}')`;
-
 let task = document.getElementsByClassName("task");
 let taskContainer = document.getElementById("taskContainer");
 let checkbtn = document.getElementsByClassName("checkbtn");
