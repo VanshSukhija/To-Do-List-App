@@ -9,8 +9,11 @@ let empty = document.getElementById("empty");
 let msg = document.getElementById("msg");
 let todos = [];
 let checked = [];
+document.getElementById("inpContainer").childNodes[5].disabled = true;
+document.getElementById("inpContainer").childNodes[9].disabled = true;
 
 if(JSON.parse(localStorage.getItem("todos")).length){
+    document.getElementById("inpContainer").childNodes[9].disabled = false;
     empty.style.display = "none";
     for(let i=0; i<JSON.parse(localStorage.getItem("todos")).length; i++){
         todos.push(JSON.parse(localStorage.getItem("todos"))[i]);
@@ -46,7 +49,7 @@ function hideicons(index){
 
 function addtask(){
     if(inpTask.value){
-        clrbtn.disable = false;
+        document.getElementById("inpContainer").childNodes[9].disabled = false;
         empty.style.display = "none";
         taskContainer.innerHTML += `<div class="task" onmouseenter="showicons(this)" onmouseleave="hideicons(this)">
         <input type="checkbox" class="checkbtn" onclick="check(this)">
@@ -64,15 +67,15 @@ function addtask(){
         msganimate("Task Added");
     }
     else
-        alert("Cannot enter an empty task");
+    msganimate("Cannot enter an empty task");
 }
 
 function cleartask(){
-    clrbtn.disable = true;
+    document.getElementById("inpContainer").childNodes[9].disabled = true;
     if(todos.length==0)
-        msganimate("There is no task to be cleared");
-        else
-        msganimate("Cleared all tasks");
+    msganimate("There is no task to be cleared");
+    else
+    msganimate("Cleared all tasks");
     localStorage.clear();
     todos = [];
     checked = [];
@@ -81,7 +84,6 @@ function cleartask(){
 }
 
 function check(element){
-    // console.log(element);
     let index = todos.indexOf(element.parentNode.childNodes[3].innerHTML);
     console.log(element.checked);
     if(element.checked){
@@ -107,6 +109,7 @@ function deltask(element){
     msganimate("Task Deleted");
     if(todos.length==0){
         empty.style.display = "block";
+        document.getElementById("inpContainer").childNodes[9].disabled = true;
     }
 }
 
@@ -126,17 +129,26 @@ function msganimate(str){
 
 let prevtext;
 function updatetask(index){
+    document.getElementById("inpContainer").childNodes[5].disabled = false;
     inpTask.value = index.parentNode.childNodes[3].innerHTML;
     prevtext = inpTask.value;
     inpTask.focus();
+    document.getElementById("inpContainer").childNodes[7].disabled = true;
+    document.getElementById("inpContainer").childNodes[9].disabled = true;
 }
 
 function update(){
     let index = todos.indexOf(prevtext);
-    taskContainer.childNodes[index].childNodes[3].innerHTML = inpTask.value;    
-    todos[todos.indexOf(prevtext)] = inpTask.value;
-    localStorage.removeItem("todos");
-    localStorage.setItem("todos", JSON.stringify(todos));
-    inpTask.value = '';
-    msganimate("Task Updated");
+    if(inpTask!=''){
+        taskContainer.childNodes[index].childNodes[3].innerHTML = inpTask.value;    
+        todos[todos.indexOf(prevtext)] = inpTask.value;
+        localStorage.removeItem("todos");
+        localStorage.setItem("todos", JSON.stringify(todos));
+        inpTask.value = '';
+        document.getElementById("inpContainer").childNodes[7].disabled = false;
+        document.getElementById("inpContainer").childNodes[9].disabled = false;
+        msganimate("Task Updated");
+    }
+    else
+        msganimate("Cannot enter empty task");
 }
